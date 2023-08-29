@@ -1,0 +1,59 @@
+combiner:
+  name: Combinations
+  playlists:
+    - name: Empty playlists folder
+      playlists: [] 
+    - name: Dark
+      playlists: 
+        - Dark & [2-5]
+        - Dark & [5]
+    - name: Hip Hop
+      playlists:
+        - "{playlist:Hip Hop} & [85-87]"
+        - "{playlist:Hip Hop} & [86]"
+    - name: Dubstep
+      playlists:
+        - "(Dubstep | Hip Hop) | (Dubstep | Hip Hop)"
+        - "Dubstep & {date:<2022} & [5]"
+    - "{artist:*Tribe*} | {comment:*Dark*} | {date:2022} | {date:<2022} | {key:7A} | {label:Some Label}"
+tags:
+  name: "Tags"
+  playlists:
+    - name: _ignore
+      playlists:
+        - Psychedelic Rock
+        - Soul
+        - Vocal
+        - Wave
+    - name: My Tags
+      playlists:
+        - Dark
+        - Uplifting 
+    - name: Genres
+      playlists:
+        - name: Bass
+          playlists:
+            - name: Breaks
+              playlists:
+                - Neurobreaks
+            - name: Hip Hop Beats
+              playlists:
+                - Halftime
+                - Hip Hop
+                - Pure Halftime
+            - Space Bass
+            - name: "[___] Step"
+              playlists:
+                - Dubstep
+                - Pure Dubstep
+        - Hip Hop
+        - Pure Hip Hop
+        - name: House
+          playlists:
+            - Minimal Deep Tech
+        - name: Techno
+          playlists:
+            - Hard Techno
+            - name: Other Techno
+              playlists:
+                - Minimal Deep Tech
