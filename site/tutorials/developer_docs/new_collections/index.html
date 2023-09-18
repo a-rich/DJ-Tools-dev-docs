@@ -2569,7 +2569,7 @@ Like the other components of a collection, the <code>Playlist</code> class also 
 </div><h2 id="appendix">Appendix</h2>
 <h3 id="rekordbox-as-an-example">Rekordbox as an example</h3>
 <h4 id="rekordboxcollection">RekordboxCollection</h4>
-<p>Rekordbox supports exporting a collection to an XML file which contains two primary sections: a COLLECTION tag with TRACK tags, and a PLAYLISTS tag with NODE tags with either more NODE tags or TRACK tags that have a key referencing the COLLECTION TRACKS. A <a href="https://github.com/a-rich/DJ-Tools/blob/main/testing/data/rekordbox.xml">minimal example XML</a> can be seen in the test data.</p>
+<p>Rekordbox supports exporting a collection to an XML file which contains two primary sections: a COLLECTION tag with TRACK tags, and a PLAYLISTS tag with NODE tags with either more NODE tags or TRACK tags that have a key referencing the COLLECTION TRACKS. A <a href="https://github.com/a-rich/DJ-Tools/blob/main/tests/data/rekordbox.xml">minimal example XML</a> can be seen in the test data.</p>
 <p>The <code>RekordboxCollection</code> implements <code>__init__</code> by parsing the XML with BeautifulSoup, deserializing the tracks as a dictionary of <code>RekordboxTrack</code> objects, and deserializing the playlists into the root node of a <code>RekordboxPlaylist</code> tree:</p>
 
 
