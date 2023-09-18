@@ -3112,10 +3112,10 @@ library's configs folder via the --link-configs argument.</p>
         <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">log_level</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">get_version</span><span class="p">())</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">get_version</span><span class="p">())</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">link_configs</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">link_configs</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">link_configs</span><span class="p">)</span>
