@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: djtools
-Version: 2.7.11
+Version: 2.7.12
 Summary: DJ Tools is a library for managing a collection of music.
 Author-email: Alex Richards <alex.richards006@gmail.com>
 Project-URL: Repository, https://github.com/a-rich/DJ-tools
@@ -62,7 +62,7 @@ Requires-Dist: python-Levenshtein==0.12.2; extra == "accelerated"
 Please see the [docs](https://a-rich.github.io/DJ-Tools/) for tutorials, how-to guides, conceptual guides, and references!
 
 # Release Plan
-* 2.7.12
+* 2.7.13
     - [ ] [Stability issues with requests to the search endpoint of the Spotify API](https://github.com/a-rich/DJ-Tools/issues/58)
     - [ ] [Make Spotify API calls asynchronous](https://github.com/a-rich/DJ-Tools/issues/38)
 * 2.8.0
