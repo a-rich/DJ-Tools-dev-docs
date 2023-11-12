@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: djtools
-Version: 2.7.13
+Version: 2.7.13rc1
 Summary: DJ Tools is a library for managing a collection of music.
 Author-email: Alex Richards <alex.richards006@gmail.com>
 Project-URL: Repository, https://github.com/a-rich/DJ-tools
@@ -31,7 +31,7 @@ Requires-Dist: asyncpraw==7.6.0
 Requires-Dist: awscli==1.27.45
 Requires-Dist: beautifulsoup4==4.11.1
 Requires-Dist: fuzzywuzzy==0.18.0
-Requires-Dist: lxml==4.9.2
+Requires-Dist: lxml==4.9.3
 Requires-Dist: pydantic==1.9.1
 Requires-Dist: pydub==0.25.1
 Requires-Dist: pyperclip==1.8.2
@@ -41,6 +41,7 @@ Requires-Dist: spotipy==2.21.0
 Requires-Dist: tqdm==4.64.0
 Requires-Dist: youtube-dl==2021.12.17
 Provides-Extra: dev
+Requires-Dist: aiohttp==3.9.0b1; extra == "dev"
 Requires-Dist: black==23.9.1; extra == "dev"
 Requires-Dist: build==0.8.0; extra == "dev"
 Requires-Dist: mkdocs==1.4.2; extra == "dev"

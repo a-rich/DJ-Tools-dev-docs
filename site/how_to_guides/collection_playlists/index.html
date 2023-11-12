@@ -1188,6 +1188,13 @@
 <img alt="alt text" src="../../images/Rekordbox_playlists_tags_yaml.png" title="Collection playlists YAML" /></p>
 <p>You can ignore the <code>combiner</code> part of the YAML for now. Although it's similar to the <code>tags</code> section, it's covered in the <a href="../combiner_playlists/">Combine Playlists With Boolean Algebra</a> how-to guide.</p>
 <p>The configuration above specifies a set of <code>name</code> folders with lists of playlists and / or folders inside of them. The leaves of this playlist tree are the actual playlists themselves named after the tag that the playlist will contain tracks for. Note that you can reference the same tag multiple times.</p>
+<p>While not pictured above, the <code>playlist_builder</code> supports configuring the names of playlists if you'd like them to be something other than the tag used to create them.
+For example, users may provide a map containing the <code>tag_content</code> field, which specifies the tag to use, and an optional <code>name</code> field to override the actual name of the playlist.
+Note that if <code>name</code> is not provided, <code>tag_content</code> will be used as the playlist name.
+Here's an example of overriding the name of a Hard Techno playlist to be "Techno that is hard":</p>
+<pre><code>    - tag_content: Hard Techno
+      name: Techno that is hard
+</code></pre>
 <p>Every folder will create an implicit playlist called <code>All &lt;folder name&gt;</code> which recursively aggregates the tracks from all the playlists within that folder. For example, my <code>Techno</code> folder will have a playlist called <code>All Techno</code> which contains the union of tracks between <code>Hard Techno</code> and <code>Minimal Deep Tech</code>.</p>
 <p>You may only have one tag for each playlist. If you're interested in creating playlists that combine multiple tags, check out the <a href="../combiner_playlists/">Combiner</a> how-to guide.</p>
 <p>Any tags in your Collection that are not included in the <code>collection_playlists.yaml</code> configuration file will automatically be added to either a <code>Other</code> playlist or an <code>Other</code> folder with a playlist for each tag (you can <a href="../../tutorials/getting_started/configuration/#collection-config">configure this behavior</a> using <code>COLLECTION_PLAYLISTS_REMAINDER</code>).</p>

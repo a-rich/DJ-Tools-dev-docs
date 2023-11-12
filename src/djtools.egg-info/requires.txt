@@ -2,7 +2,7 @@ asyncpraw==7.6.0
 awscli==1.27.45
 beautifulsoup4==4.11.1
 fuzzywuzzy==0.18.0
-lxml==4.9.2
+lxml==4.9.3
 pydantic==1.9.1
 pydub==0.25.1
 pyperclip==1.8.2
@@ -16,6 +16,7 @@ youtube-dl==2021.12.17
 python-Levenshtein==0.12.2
 
 [dev]
+aiohttp==3.9.0b1
 black==23.9.1
 build==0.8.0
 mkdocs==1.4.2

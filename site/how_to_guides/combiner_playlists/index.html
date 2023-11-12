@@ -1305,6 +1305,12 @@
 <p>Note that the examples below are trivial ones designed to get 100% code coverage in unit tests.</p>
 <p><img alt="alt text" src="../../images/Rekordbox_playlists_combiner_yaml.png" title="Collection playlists YAML" /></p>
 <p>The <code>combiner</code> configuration specifies a set of <code>name</code> folders with lists of playlists and / or folders inside of them. The leaves of this playlist tree are the actual playlists themselves whose names are boolean algebra expressions that use the syntax noted above to describe how different tags and selectors are to be combined to produce the final playlist of tracks. Valid expressions must contain at least two operands and must have one less operator than there are operands. </p>
+<p>Note that, as with the tag playlists, you may provide an override for these playlist names.
+This can be really helpful since combiner playlists can otherwise have very long names.
+Here's an example of configuring a playlist name override:</p>
+<pre><code>    - tag_content: &quot;Dubstep &amp; {date:&lt;2022} &amp; [5]&quot;
+      name: Pre 2022 High Energy Dubstep
+</code></pre>
 <p>Once you've finalized your playlist configuration, run the following command to build the playlists:</p>
 <p><code>djtools --collection-playlists</code></p>
 <p>Now you can import the <code>PLAYLIST_BUILDER</code> folder to load these playlists into your Collection:
