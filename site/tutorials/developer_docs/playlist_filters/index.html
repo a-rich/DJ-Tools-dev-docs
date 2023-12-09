@@ -512,19 +512,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#djtools.collection.playlist_filters.HipHopFilter" class="md-nav__link">
-    HipHopFilter
-  </a>
-  
-    <nav class="md-nav" aria-label="HipHopFilter">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#minimaldeeptechfilter" class="md-nav__link">
     MinimalDeepTechFilter
@@ -532,15 +519,22 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#complextrackfilter" class="md-nav__link">
+    ComplexTrackFilter
+  </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#djtools.collection.playlist_filters.MinimalDeepTechFilter" class="md-nav__link">
-    MinimalDeepTechFilter
+        
+          <li class="md-nav__item">
+  <a href="#transitiontrackfilter" class="md-nav__link">
+    TransitionTrackFilter
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1191,19 +1185,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#djtools.collection.playlist_filters.HipHopFilter" class="md-nav__link">
-    HipHopFilter
-  </a>
-  
-    <nav class="md-nav" aria-label="HipHopFilter">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#minimaldeeptechfilter" class="md-nav__link">
     MinimalDeepTechFilter
@@ -1211,15 +1192,22 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#complextrackfilter" class="md-nav__link">
+    ComplexTrackFilter
+  </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#djtools.collection.playlist_filters.MinimalDeepTechFilter" class="md-nav__link">
-    MinimalDeepTechFilter
+        
+          <li class="md-nav__item">
+  <a href="#transitiontrackfilter" class="md-nav__link">
+    TransitionTrackFilter
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1242,7 +1230,7 @@
 
 
 <h1 id="playlistfilters">PlaylistFilters</h1>
-<p>When creating tag playlists, the <code>playlist_builder</code> calls <code>filter_tag_playlists</code> with a configurable list of <code>PlaylistFilter</code> implementations:</p>
+<p>When creating playlists, the <code>playlist_builder</code> calls <code>filter_tag_playlists</code> with a configurable list of <code>PlaylistFilter</code> implementations:</p>
 
 
 
@@ -1323,7 +1311,7 @@
           </details>
   </div>
 
-</div><p>These <code>PlaylistFilters</code> inject custom behavior into the <code>playlist_builder</code>. In general, this is done by scanning through a playlist structure and looking for a playlist, or playlists, that match one description and then filter for tracks that match another description.</p>
+</div><p>These <code>PlaylistFilters</code> inject custom behavior into the <code>playlist_builder</code>. In general, this is done by scanning through a playlist structure and looking for a playlist, or playlists, that match some description and then filter for tracks that match another description.</p>
 
 
 <div class="doc doc-object doc-class">
@@ -1407,8 +1395,8 @@
 
 </div><p><code>PlaylistFilter</code> subclasses must implement two methods:</p>
 <ul>
-<li><code>is_filter_playlist</code>: returns True if a given <code>Playlist</code> should have the filter applied to its tracks</li>
-<li><code>filter_track</code>: returns True if a track should remain in the playlist after applying the filter.</li>
+<li><code>is_filter_playlist</code>: returns <code>True</code> if a given <code>Playlist</code> should have the filter applied to its tracks</li>
+<li><code>filter_track</code>: returns <code>True</code> if a track should remain in the playlist after applying the filter.</li>
 </ul>
 <p>Once a <code>PlaylistFilter</code> is implemented, it must be added to the list of supported <code>COLLECTION_PLAYLIST_FILTERS</code>:</p>
 
@@ -1551,304 +1539,36 @@
   </div>
 
 </div><h2 id="playlistfilter-implementations">PlaylistFilter Implementations</h2>
-<p>The <code>playlist_filters</code> module contains a set of <code>PlaylistFilter</code> implementations including <code>HipHopFilter</code> and <code>MinimalDeepTechFilter</code>.</p>
+<p>The <code>playlist_filters</code> module contains the following set of <code>PlaylistFilter</code> implementations:
+- <code>HipHopFilter</code>
+- <code>MinimalDeepTechFilter</code>
+- <code>TransitionTrackFilter</code>
+- <code>ComplexTrackFilter</code></p>
 <h3 id="hiphopfilter">HipHopFilter</h3>
 <ul>
 <li>Checks to see if a playlist named 'Hip Hop' is a child of a playlist named 'Bass'</li>
 <li>If it is, then tracks in that playlist must have a genre tag besides 'Hip Hop' and 'R&amp;B'</li>
 <li>If it is not, then tracks in that playlist must have only genre tags 'Hip Hop' and 'R&amp;B'</li>
 </ul>
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<a id="djtools.collection.playlist_filters.HipHopFilter"></a>
-  <div class="doc doc-contents first">
-
-  
-
-            <details class="quote">
-              <summary>Source code in <code>djtools/collection/playlist_filters.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">HipHopFilter</span><span class="p">(</span><span class="n">PlaylistFilter</span><span class="p">):</span>
-    <span class="s1">&#39;This class filters playlists called &quot;Hip Hop&quot;.&#39;</span>
-
-    <span class="k">def</span> <span class="nf">filter_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">:</span> <span class="n">Track</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns True if this track should remain in the playlist.</span>
-
-<span class="sd">        If the playlist is not underneath a folder called &quot;Bass&quot;, then this</span>
-<span class="sd">        track is filtered out unless it has exclusively &quot;Hip Hop&quot; and &quot;R&amp;B&quot;</span>
-<span class="sd">        genre tags. If the playlist is underneath a folder called &quot;Bass&quot;, then</span>
-<span class="sd">        this track is filtered out if it does have exclusively &quot;Hip Hop&quot; and</span>
-<span class="sd">        &quot;R&amp;B&quot; genre tags.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            track: Track object to apply filter to.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Whether or not this track should be included in the playlist.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pure_hip_hop_with_other_tags</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bass_hip_hop</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span>
-            <span class="s2">&quot;r&amp;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s2">&quot;hip hop&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">get_genre_tags</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="n">bass_hip_hop_without_other_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bass_hip_hop</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
-            <span class="s2">&quot;r&amp;b&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;hip hop&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">get_genre_tags</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">pure_hip_hop_with_other_tags</span> <span class="ow">or</span> <span class="n">bass_hip_hop_without_other_tags</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-        <span class="k">return</span> <span class="kc">True</span>
-
-
-    <span class="k">def</span> <span class="nf">is_filter_playlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">playlist</span><span class="p">:</span> <span class="n">Playlist</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns True if this playlist&#39;s name is &quot;Hip Hop&quot;.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            playlist: Playlist object to potentially filter.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Whether or not to filter this playlist.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">playlist</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Hip Hop&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_bass_hip_hop</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1">#pylint: disable=attribute-defined-outside-init</span>
-        <span class="n">parent</span> <span class="o">=</span> <span class="n">playlist</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span>
-        <span class="k">while</span> <span class="n">parent</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">parent</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Bass&quot;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_bass_hip_hop</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1">#pylint: disable=attribute-defined-outside-init</span>
-            <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="kc">True</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  </div>
-
-</div><h3 id="minimaldeeptechfilter">MinimalDeepTechFilter</h3>
+<h3 id="minimaldeeptechfilter">MinimalDeepTechFilter</h3>
 <ul>
 <li>Checks to see if a playlist named 'Minimal Deep Tech' is a child of a playlist named 'Techno' or 'House'</li>
 <li>If it's a child of a 'Techno' playlist, then at least one other genre tag must contain the substring 'techno' (case insensitive)</li>
 <li>If it's a child of a 'House' playlist, then at least one other genre tag must contain the substring 'house'</li>
 </ul>
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<a id="djtools.collection.playlist_filters.MinimalDeepTechFilter"></a>
-  <div class="doc doc-contents first">
-
-  
-
-            <details class="quote">
-              <summary>Source code in <code>djtools/collection/playlist_filters.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MinimalDeepTechFilter</span><span class="p">(</span><span class="n">PlaylistFilter</span><span class="p">):</span>
-    <span class="s1">&#39;This class filters playlists called &quot;Minimal Deep Tech&quot;.&#39;</span>
-
-    <span class="k">def</span> <span class="nf">filter_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">:</span> <span class="n">Track</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns True if this track should remain in the playlist.</span>
-
-<span class="sd">        If the playlist is not underneath a folder called &quot;Techno&quot;, then this</span>
-<span class="sd">        track is filtered out if the genre tag preceding &quot;Minimal Deep Tech&quot; is</span>
-<span class="sd">        &quot;Techno&quot;. If the playlist is underneath a folder called &quot;Techno&quot;, then</span>
-<span class="sd">        this track is filtered out if the genre tag preceding</span>
-<span class="sd">        &quot;Minimal Deep Tech&quot; is not &quot;Techno&quot;.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            track: Track object to apply filter to.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Whether or not this track should be included in the playlist.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">house_exp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*house.*&quot;</span><span class="p">)</span>
-        <span class="n">techno_exp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*techno.*&quot;</span><span class="p">)</span>
-        <span class="n">house_tag</span> <span class="o">=</span> <span class="n">techno_tag</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">track</span><span class="o">.</span><span class="n">get_genre_tags</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">house_exp</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
-                <span class="n">house_tag</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">techno_exp</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
-                <span class="n">techno_tag</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_techno</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">techno_tag</span><span class="p">)</span> <span class="ow">or</span>
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_house</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">house_tag</span><span class="p">)</span>
-        <span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-        <span class="k">return</span> <span class="kc">True</span>
-
-    <span class="k">def</span> <span class="nf">is_filter_playlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">playlist</span><span class="p">:</span> <span class="n">Playlist</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns True if this playlist&#39;s name is &quot;Minimal Deep Tech&quot;.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            playlist: Playlist object to potentially filter.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Whether or not to filter this playlist.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">playlist</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Minimal Deep Tech&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_techno</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1">#pylint: disable=attribute-defined-outside-init</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_house</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1">#pylint: disable=attribute-defined-outside-init</span>
-        <span class="n">parent</span> <span class="o">=</span> <span class="n">playlist</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span>
-        <span class="k">while</span> <span class="n">parent</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">parent</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Techno&quot;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_techno</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1">#pylint: disable=attribute-defined-outside-init</span>
-            <span class="k">if</span> <span class="n">parent</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;House&quot;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_house</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1">#pylint: disable=attribute-defined-outside-init</span>
-            <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="kc">True</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
+<h3 id="complextrackfilter">ComplexTrackFilter</h3>
+<ul>
+<li>Checks to see if the playlist, or a parent playlist, contains the substring 'complex' </li>
+<li>Filters tracks that contain fewer than a set number of tags (only includes "other" tags, does not include genre tags)</li>
+<li>When instantiated, <code>ComplexTrackFilter</code> takes optional arguments for the <code>minimum_tags_for_complex_track</code> as well as the list of <code>exclude_tags</code> which may not count towards the total number of tags</li>
+</ul>
+<h3 id="transitiontrackfilter">TransitionTrackFilter</h3>
+<ul>
+<li>Checks to see if the playlist, or a parent playlist, contains the substring 'transition' </li>
+<li>Checks to see if the playlist contains one, and only one, of the substrings 'genre' or 'tempo'</li>
+<li>Filters tracks that contain a special annotation in their comments field</li>
+<li>The expected annotation must match the following syntax <code>[ token1 / token2]</code> where a <code>token</code> must be strings if it's a 'genre' transition playlist or numbers if it's a 'tempo' transition playlist</li>
+</ul>
 
 
 

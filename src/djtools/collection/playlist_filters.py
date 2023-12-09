@@ -164,7 +164,7 @@ class MinimalDeepTechFilter(PlaylistFilter):
         return True
 
 
-class ComplexTrackFilter(ABC):
+class ComplexTrackFilter(PlaylistFilter):
     """This class filters "complex" playlists.
 
     This PlaylistFilter looks for playlists with "complex" in their name or in
@@ -188,7 +188,16 @@ class ComplexTrackFilter(ABC):
         """
         self._min_tags_for_complex_track = min_tags_for_complex_track
         if exclude_tags is None:
-            exclude_tags = ["Vocal"]
+            exclude_tags = [
+                "DELETE",
+                "Flute",
+                "Guitar",
+                "Horn",
+                "Piano",
+                "Scratch",
+                "Strings",
+                "Vocal",
+            ]
         self._exclude_tags = set(exclude_tags)
 
     def filter_track(self, track: Track) -> bool:
@@ -232,7 +241,7 @@ class ComplexTrackFilter(ABC):
         return False
 
 
-class TransitionTrackFilter(ABC):
+class TransitionTrackFilter(PlaylistFilter):
     """This class filters "transition" playlists.
 
     This PlaylistFilter looks for playlists with "transition" in their name or in

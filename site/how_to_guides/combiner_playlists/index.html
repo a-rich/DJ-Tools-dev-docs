@@ -1311,6 +1311,7 @@ Here's an example of configuring a playlist name override:</p>
 <pre><code>    - tag_content: &quot;Dubstep &amp; {date:&lt;2022} &amp; [5]&quot;
       name: Pre 2022 High Energy Dubstep
 </code></pre>
+<p>Also note that combiner playlists, like tag playlists, have <code>PlaylistFilter</code> logic and recursive track aggregation applied to them.</p>
 <p>Once you've finalized your playlist configuration, run the following command to build the playlists:</p>
 <p><code>djtools --collection-playlists</code></p>
 <p>Now you can import the <code>PLAYLIST_BUILDER</code> folder to load these playlists into your Collection:
