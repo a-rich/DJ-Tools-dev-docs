@@ -1181,6 +1181,7 @@
 <p>In fact, removing the template <code>config.yaml</code> and building a config from scratch is what I do before every new release to ensure that <code>config.yaml</code> always reflects whatever options are available in DJ Tools.</p>
 <h2 id="base-config"><a class="autorefs autorefs-internal" href="../../../reference/configs/#djtools.configs.config.BaseConfig">Base config</a></h2>
 <ul>
+<li><code>ARTIST_FIRST</code>: used to indicate that your Beatcloud tracks adhere to the <code>Artist1, Artist2 - Title (Artist2 Remix)</code> format rather than the <code>Title (Artist2 Remix) - Artist1, Artist2</code> format expected by default </li>
 <li><code>LOG_LEVEL</code>: logger log level</li>
 <li><code>VERBOSITY</code>: verbosity level for logging messages</li>
 </ul>
@@ -1215,7 +1216,6 @@
 </ul>
 <h2 id="sync-config"><a class="autorefs autorefs-internal" href="../../../reference/sync/#djtools.sync.config.SyncConfig">Sync config</a></h2>
 <ul>
-<li><code>ARTIST_FIRST</code>: used to indicate that your Beatcloud tracks adhere to the <code>Artist1, Artist2 - Title (Artist2 Remix)</code> format rather than the <code>Title (Artist2 Remix) - Artist1, Artist2</code> format expected by default </li>
 <li><code>AWS_PROFILE</code>: the name of the profile used when running <code>aws configure --profile</code></li>
 <li><code>AWS_USE_DATE_MODIFIED</code>: up/download files that already exist at the destination if the date modified field at the source is after that of the destination...BE SURE THAT ALL USERS OF YOUR <code>BEATCLOUD</code> INSTANCE ARE ON BOARD BEFORE UPLOADING WITH THIS FLAG SET!</li>
 <li><code>DISCORD_URL</code>: webhook URL for messaging a Discord server's channel when new music has been uploaded to the <code>beatcloud</code></li>
