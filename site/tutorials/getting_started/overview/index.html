@@ -1556,15 +1556,13 @@
 <p>If you want to learn more about how to use DJ Tools to achieve any of the following, please visit the <a href="../../../how_to_guides/">How-to Guides</a>.</p>
 <h2 id="collection">Collection</h2>
 <p>This package reads and writes a collection of tracks and playlists. Operations can be performed on this collection such as shuffling and creating backups of playlists and the files that they're comprised of.</p>
-<p>Perhaps the most useful features in the <code>collection</code> package:</p>
-<ol>
-<li>automatically build playlists based on your tags and a desired folder structure </li>
-<li>allow you to define playlists using powerful <a href="https://en.wikipedia.org/wiki/Set_theory#Basic_concepts_and_notation">boolean algebra expressions</a> that combine and filter playlists</li>
-</ol>
-<p>With this latter feature, you can create, for example, a playlist that has all your <code>Dark</code> tracks that are also in the set of tracks that are either <code>Dubstep</code>, in the BPM range <code>138</code> to <code>142</code>, or have <code>Eprom</code> somewhere in the artist field, but don't come from a playlist called <code>Weak Beats</code>:</p>
-<p><code>Dark &amp; (Dubstep | [138-142] | {artist: *Eprom*}) ~ {playlist: Weak Beats}</code></p>
+<p>Perhaps the most useful feature in the <code>collection</code> package is the playlist builder.
+The playlist builder automatically builds playlists using the metadata associated with tracks in your collection and a <code>collection_playlists.yaml</code> configuration file.</p>
+<p>The <code>tags</code> key in your <code>collection_playlists.yaml</code> specifies a desired playlist structure using singular tags (genre tags and "other" tags).
+The <code>combiner</code> key specifies playlists using powerful <a href="https://en.wikipedia.org/wiki/Set_theory#Basic_concepts_and_notation">boolean algebra expressions</a> that apply operations on a variety of operands including, but not limited to: tags, playlists, BPM, rating, release year, date added, comments, artists, labels, etc.</p>
+<p>For more information on the playlist builder, see the How-to Guides for <a href="../../../how_to_guides/collection_playlists/">tag</a> and <a href="../../../how_to_guides/combiner_playlists/">combiner</a> playlists.</p>
 <h2 id="spotify">Spotify</h2>
-<p>This package uses the Spotify and Reddit APIs to automatically generate playlists from Reddit submission and the uploads of other users of your Beatcloud instance.</p>
+<p>This package uses the Spotify and Reddit APIs to automatically generate playlists from Reddit submissions and the uploads of other users of your Beatcloud instance.</p>
 <p>By configuring particular subreddits, you can ensure that you're getting a steady stream of focused music discovery that caters to your interests.</p>
 <p>Being able to generate Spotify playlists from other users' uploads gives you an opportunity to preview tracks before you decide whether or not you want to sync them (and it goes hand-in-hand with a sister feature of the <code>sync</code> package that makes it easy to sync tracks from this playlist).</p>
 <h2 id="sync">Sync</h2>

@@ -1679,14 +1679,13 @@
 <li>Linux installation: <code>sudo apt install python3.8</code></li>
 <li>Windows installation: <a href="https://www.python.org/downloads/windows/">Windows releases</a> or <a href="https://www.python.org/ftp/python/3.8.9/python-3.8.9.exe">3.8.9 installer</a></li>
 </ul>
-<p>Note that, at the time of writing, Python versions up through 3.7 have reached <a href="https://devguide.python.org/versions/">end-of-life</a>...best to use at least Python 3.8.</p>
 <h2 id="dj-tools">DJ Tools</h2>
 <ol>
 <li>Run <code>pip install "djtools[accelerated]"</code> to install the DJ Tools library<ul>
 <li>To install DJ Tools without the accelerated computation for Levenshtein distance (might be difficult to install the binaries for non-technical users), run <code>pip install djtools</code></li>
 <li>You can install the pre-release version with <code>pip install djtools --pre</code></li>
 <li>If you want to restrict the version being installed to not include, say, the next minor version's beta release then you can do so like <code>pip install djtools&lt;2.5.0 --pre</code></li>
-<li>Note that installing with the <code>--pre</code> flag will also install pre-release versions for all dependencies which may cause breakage, in that case you can target specific pre-release versions like this <code>pip install djtools==2.4.1-b9</code></li>
+<li>Note that installing with the <code>--pre</code> flag will also install pre-release versions for all dependencies which may cause breakage, in that case you can target specific pre-release versions like this <code>pip install djtools==2.4.1-rc9</code></li>
 </ul>
 </li>
 <li>Confirm your installation works by running <code>djtools</code></li>

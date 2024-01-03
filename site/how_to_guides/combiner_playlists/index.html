@@ -1659,7 +1659,7 @@
 <li>and have a rating of 5</li>
 <li>and with BPMs in the range 130 to 150</li>
 </ul>
-<p>The expression a.k.a. the combiner playlist name will look this:</p>
+<p>The expression will look this:</p>
 <pre><code>[2000-2023] &amp; [5] &amp; [130-150]
 </code></pre>
 <p>Now let's say we want a playlist with tracks that have <em>any one of</em> the following properties:</p>
@@ -1695,7 +1695,7 @@
 <li>Import the <code>PLAYLIST_BUILDER</code> folder from the generated collection</li>
 </ol>
 <h2 id="example">Example</h2>
-<p>As is done in the <a href="../collection_playlists/#example">Build Playlists From Tags</a> how-to guide, we'll start by looking at some simple expressions configured in the pre-packaged <a href="https://github.com/a-rich/DJ-Tools/blob/main/djtools/configs/collection_playlists.yaml">collection_playlists.yaml</a>, but this time we'll focus only on the <code>combiner</code> section:</p>
+<p>As is done in the <a href="../collection_playlists/#example">Build Playlists From Tags</a> how-to guide, we'll start by looking at some simple expressions configured in the pre-packaged <a href="https://github.com/a-rich/DJ-Tools/blob/main/tests/data/collection_playlists.yaml">collection_playlists.yaml</a>, but this time we'll focus only on the <code>combiner</code> section:</p>
 <p>Note that the examples below are trivial ones designed to get 100% code coverage in unit tests.</p>
 <p><img alt="alt text" src="../../images/Rekordbox_playlists_combiner_yaml.png" title="Collection playlists YAML" /></p>
 <p>The <code>combiner</code> configuration specifies a set of <code>name</code> folders with lists of playlists and / or folders inside of them. The leaves of this playlist tree are the actual playlists themselves whose names are boolean algebra expressions that use the syntax noted above to describe how different tags and selectors are to be combined to produce the final playlist of tracks. Valid expressions must contain at least two operands and must have one less operator than there are operands. </p>

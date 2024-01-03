@@ -1570,9 +1570,11 @@
 
 
 <h1 id="configuration">Configuration</h1>
-<p>When the <code>djtools</code> command is run, <code>build_config</code> looks for a <code>config.yaml</code> in the package's <code>config</code> directory and creates a <code>BaseConfig</code> object using its values. If <code>djtools</code> was run with any CLI options, those values override whatever was set in the <code>BaseConfig</code> using the values in <code>config.yaml</code>.</p>
-<p>If <code>config.yaml</code>, or any of the values it might contain, is missing then the default values in the Python object are used instead. In fact, if <code>config.yaml</code> is missing, then a default one will be created by serializing the fully instantiated <code>BaseConfig</code> object. This makes it easy for users to then edit <code>config.yaml</code> to get the desired behavior without having to reference the API to see what options are available.</p>
-<p>In fact, removing the template <code>config.yaml</code> and building a config from scratch is what I do before every new release to ensure that <code>config.yaml</code> always reflects whatever options are available in DJ Tools.</p>
+<p>When the <code>djtools</code> command is run, <code>build_config</code> looks for a <code>config.yaml</code> in the package's <code>config</code> directory and creates a <code>BaseConfig</code> object using its values. 
+If <code>djtools</code> was run with any CLI options, those values override whatever was set in the <code>BaseConfig</code> using the values in <code>config.yaml</code>.</p>
+<p>If <code>config.yaml</code> doesn't exist, it will be generated when running <code>djtools</code>.
+If <code>config.yaml</code>, or any of the values it might contain, is missing then the default values in the Python object are used instead.
+If <code>config.yaml</code> contains any unsupported options, <code>djtools</code> will fail as extra keys are forbidden.</p>
 <h2 id="base-config"><a class="autorefs autorefs-internal" href="../../../reference/configs/#djtools.configs.config.BaseConfig">Base config</a></h2>
 <ul>
 <li><code>ARTIST_FIRST</code>: used to indicate that your Beatcloud tracks adhere to the <code>Artist1, Artist2 - Title (Artist2 Remix)</code> format rather than the <code>Title (Artist2 Remix) - Artist1, Artist2</code> format expected by default </li>
@@ -1629,7 +1631,7 @@
 </ul>
 <h2 id="utils-config"><a class="autorefs autorefs-internal" href="../../../reference/utils/#djtools.utils.config.UtilsConfig">Utils config</a></h2>
 <ul>
-<li><code>AUDIO_BITRATE</code>: integer in the range [<code>36</code>, <code>320</code>] representing the bitrate to write audio at e.g. <code>320</code></li>
+<li><code>AUDIO_BITRATE</code>: string representing the integer in the range [<code>36</code>, <code>320</code>] for the bitrate to write audio at e.g. <code>"320"</code></li>
 <li><code>AUDIO_DESTINATION</code>: path to where downloaded and / or exported files go to</li>
 <li><code>AUDIO_FORMAT</code>: string representing the file format write audio in e.g. <code>"mp3"</code></li>
 <li><code>AUDIO_HEADROOM</code>: non-negative float representing the amount of headroom in decibels to leave when normalizing audio</li>
