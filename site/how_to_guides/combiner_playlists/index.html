@@ -615,6 +615,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#date-string-selectors-can-take-two-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Date string selectors can take two forms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-look-at-an-example-playlist-to-see-how-the-syntax-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let's look at an example playlist to see how the syntax works.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1511,6 +1535,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#date-string-selectors-can-take-two-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Date string selectors can take two forms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-look-at-an-example-playlist-to-see-how-the-syntax-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let's look at an example playlist to see how the syntax works.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1612,6 +1660,9 @@
 <li><code>{date:2022}</code></li>
 <li><code>{date:&gt;2021-10-05}</code></li>
 <li><code>{date:&lt;=2020-05}</code></li>
+<li><code>{date:1y}</code></li>
+<li><code>{date:&gt;=3m}</code></li>
+<li><code>{date:&lt;10w5d}</code></li>
 <li><code>{key:7A}</code></li>
 <li><code>{label:duploc}</code></li>
 <li><code>{playlist: Deep House}</code></li>
@@ -1632,7 +1683,19 @@
 </ul>
 </li>
 </ul>
-<p>Let's look at an example playlist to see how the syntax works.</p>
+<h3 id="date-string-selectors-can-take-two-forms">Date string selectors can take two forms:</h3>
+<ol>
+<li>ISO format date strings e.g. <code>2024-06-22</code>, <code>2024-06</code>, <code>2024</code></li>
+<li><code>ymwd</code> (year, month, week, day) format timedelta strings e.g. <code>1y</code>, <code>3m2w</code>, <code>5d</code></li>
+</ol>
+<p>Here's how playlists can be built using the different date string selector types using the examples from above.
+- <code>{date:2022}</code>: tracks added in the year 2022
+- <code>{date:&gt;2021-10-05}</code>: track added after October 5th, 2021
+- <code>{date:&lt;=2020-05}</code>: tracks added on or before May, 2020
+- <code>{date:1y}</code>: tracks added exactly 1 year ago today
+- <code>{date:&gt;=3m}</code>: tracks added within the last 3 months
+- <code>{date:&lt;10w5d}</code>: tracks at least 75 days old</p>
+<h3 id="lets-look-at-an-example-playlist-to-see-how-the-syntax-works">Let's look at an example playlist to see how the syntax works.</h3>
 <p>Suppose we want a playlist with tracks that <em>all have</em> the following properties:</p>
 <ul>
 <li>from the years 2000 to 2023</li>
