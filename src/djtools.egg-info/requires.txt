@@ -6,6 +6,7 @@ lxml
 pydantic
 pydub
 pyperclip
+python-dateutil
 PyYAML
 requests
 spotipy
