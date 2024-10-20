@@ -2,6 +2,7 @@ asyncpraw
 awscli
 beautifulsoup4
 fuzzywuzzy
+Jinja2
 lxml
 pydantic
 pydub
