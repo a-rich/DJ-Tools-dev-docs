@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: djtools
-Version: 2.7.15rc1
+Version: 2.7.15rc2
 Summary: DJ Tools is a library for managing a collection of music.
 Author-email: Alex Richards <alex.richards006@gmail.com>
 Project-URL: Repository, https://github.com/a-rich/DJ-tools
@@ -16,14 +16,13 @@ Classifier: Natural Language :: English
 Classifier: Operating System :: MacOS :: MacOS X
 Classifier: Operating System :: Microsoft :: Windows
 Classifier: Operating System :: POSIX :: Linux
-Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
 Classifier: Programming Language :: Python :: 3.12
 Classifier: Topic :: Multimedia :: Sound/Audio
 Classifier: Topic :: Other/Nonlisted Topic
-Requires-Python: >=3.8
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: asyncpraw
