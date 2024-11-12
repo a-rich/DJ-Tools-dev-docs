@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
@@ -1565,7 +1565,9 @@ Here's an example of overriding the name of a Hard Techno playlist to be "Techno
 <pre><code>    - tag_content: Hard Techno
       name: Techno that is hard
 </code></pre>
-<p>Every folder will create an implicit playlist called <code>All &lt;folder name&gt;</code> which recursively aggregates the tracks from all the playlists within that folder. For example, my <code>Techno</code> folder will have a playlist called <code>All Techno</code> which contains the union of tracks between <code>Hard Techno</code> and <code>Minimal Deep Tech</code>.</p>
+<p>Another config option that's not shown in the picture above is <code>enable_aggregation</code>.
+Every folder with this option set to <code>true</code> will create an implicit playlist called <code>All &lt;folder name&gt;</code> which aggregates the tracks from all the playlists within that folder.
+For example, my <code>Techno</code> folder will have a playlist called <code>All Techno</code> which contains the union of tracks between <code>Hard Techno</code> and <code>Minimal Deep Tech</code>.</p>
 <p>You may only have one tag for each playlist. If you're interested in creating playlists that combine multiple tags, check out the <a href="../combiner_playlists/">Combiner</a> how-to guide.</p>
 <p>Any tags in your Collection that are not included in the <code>collection_playlists.yaml</code> configuration file will automatically be added to either a <code>Unused Tags</code> playlist or an <code>Unused Tags</code> folder with a playlist for each tag (you can <a href="../../tutorials/getting_started/configuration/#collection-config">configure this behavior</a> using <code>COLLECTION_PLAYLISTS_REMAINDER</code>).</p>
 <p>If there are tags for which you're not interested in creating an <code>Unused Tags</code> playlist(s) for, simply add a new folder to the tree call <code>_ignore</code> and list the tags underneath of it.</p>
@@ -1573,6 +1575,7 @@ Here's an example of overriding the name of a Hard Techno playlist to be "Techno
 In general, each <code>PlaylistFilter</code> calls a <code>is_filter_playlist</code> method which returns <code>True</code> if the playlist should have filtering logic applied to it.
 For each track in the playlist, the <code>PlaylistFilter</code> method <code>filter_track</code> is called with the track and returns <code>True</code> if the track should remain in the playlist.</p>
 <p>You may configure which, if any, <code>PlaylistFilters</code> you want applied using the <code>COLLECTION_PLAYLIST_FILTERS</code> option. Check the <a href="../../reference/collection/">references</a> for the current set of implemented <code>PlaylistFilters</code>.</p>
+<p>Finally, you may configure the option <code>MINIMUM_TAG_PLAYLIST_TRACKS</code> to any positive integer in order to place a lower bound on the number of tracks that must exist in a tag playlist in order for the playlist to be created.</p>
 <p>Once you've finalized your playlist configuration, run the following command to build the playlists:</p>
 <p><code>djtools --collection-playlists</code></p>
 <p>Now you can import the <code>PLAYLIST_BUILDER</code> folder to load these playlists into your Collection:
