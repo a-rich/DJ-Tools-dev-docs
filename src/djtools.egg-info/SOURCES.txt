@@ -17,6 +17,7 @@ src/djtools/collection/base_track.py
 src/djtools/collection/config.py
 src/djtools/collection/copy_playlists.py
 src/djtools/collection/helpers.py
+src/djtools/collection/platform_registry.py
 src/djtools/collection/playlist_builder.py
 src/djtools/collection/playlist_filters.py
 src/djtools/collection/rekordbox_collection.py
@@ -26,6 +27,7 @@ src/djtools/collection/shuffle_playlists.py
 src/djtools/configs/__init__.py
 src/djtools/configs/cli_args.py
 src/djtools/configs/config.py
+src/djtools/configs/config_formatter.py
 src/djtools/configs/helpers.py
 src/djtools/logs/__init__.py
 src/djtools/spotify/__init__.py
