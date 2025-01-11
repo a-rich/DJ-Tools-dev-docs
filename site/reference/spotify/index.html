@@ -1878,7 +1878,7 @@ of config.yaml</p>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SpotifyConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SpotifyConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration object for the spotify package.&quot;&quot;&quot;</span>
 
     <span class="n">spotify_playlist_default_limit</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="mi">50</span>
@@ -1897,7 +1897,7 @@ of config.yaml</p>
     <span class="n">spotify_redirect_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">spotify_username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">        Raises:</span>
@@ -1925,13 +1925,13 @@ of config.yaml</p>
             <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spotify_playlists</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">spotify_playlist_from_upload</span><span class="p">:</span>
             <span class="c1"># pylint: disable=cyclic-import</span>
-            <span class="kn">from</span> <span class="nn">djtools.spotify.helpers</span> <span class="kn">import</span> <span class="n">get_spotify_client</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">djtools.spotify.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_spotify_client</span>
 
             <span class="n">spotify</span> <span class="o">=</span> <span class="n">get_spotify_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">spotify</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Spotify credentials are invalid!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Spotify credentials are invalid!&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spotify_playlists</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span>
             <span class="p">[</span>
@@ -2065,7 +2065,7 @@ of config.yaml</p>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">    Raises:</span>
@@ -2093,13 +2093,13 @@ of config.yaml</p>
         <span class="p">)</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spotify_playlists</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">spotify_playlist_from_upload</span><span class="p">:</span>
         <span class="c1"># pylint: disable=cyclic-import</span>
-        <span class="kn">from</span> <span class="nn">djtools.spotify.helpers</span> <span class="kn">import</span> <span class="n">get_spotify_client</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">djtools.spotify.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_spotify_client</span>
 
         <span class="n">spotify</span> <span class="o">=</span> <span class="n">get_spotify_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">spotify</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Spotify credentials are invalid!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Spotify credentials are invalid!&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spotify_playlists</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span>
         <span class="p">[</span>
@@ -2158,7 +2158,7 @@ of config.yaml</p>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SubredditConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubredditConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration object for spotify_playlists.&quot;&quot;&quot;</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
@@ -2335,7 +2335,7 @@ to the respective playlist if the Levenshtein similarity passes a threshold.</p>
 <span class="normal">94</span>
 <span class="normal">95</span>
 <span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">async_spotify_playlists</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">async_spotify_playlists</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function updates the contents of one or more Spotify playlists with</span>
 <span class="sd">        the posts of one or more subreddits (currently only supports one</span>
 <span class="sd">        subreddit per playlist).</span>
@@ -2541,7 +2541,7 @@ copied to the system's clipboard</p>
 <span class="normal">174</span>
 <span class="normal">175</span>
 <span class="normal">176</span>
-<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">spotify_playlist_from_upload</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">spotify_playlist_from_upload</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a Spotify playlist using a Discord webhook output.</span>
 
 <span class="sd">    If &quot;upload_output&quot;, a path to a text file containing the pasted output of</span>
@@ -2677,7 +2677,7 @@ copied to the system's clipboard</p>
 <span class="normal">183</span>
 <span class="normal">184</span>
 <span class="normal">185</span>
-<span class="normal">186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">spotify_playlists</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">spotify_playlists</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function asynchronously updates Spotify playlists.</span>
 
 <span class="sd">    Args:</span>
@@ -2897,7 +2897,7 @@ copied to the system's clipboard</p>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
-<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_results</span><span class="p">(</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">filter_results</span><span class="p">(</span>
     <span class="n">spotify</span><span class="p">:</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">,</span>
     <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span>
     <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -2997,7 +2997,7 @@ copied to the system's clipboard</p>
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_playlist_ids</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_playlist_ids</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Load Spotify playlist names -&gt; IDs lookup.</span>
 
 <span class="sd">    Returns:</span>
@@ -3105,7 +3105,7 @@ copied to the system's clipboard</p>
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_reddit_client</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">:</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_reddit_client</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiate a Reddit API client.</span>
 
 <span class="sd">    Args:</span>
@@ -3226,7 +3226,7 @@ copied to the system's clipboard</p>
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
-<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_spotify_client</span><span class="p">(</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_spotify_client</span><span class="p">(</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BaseConfig</span><span class="p">,</span> <span class="n">SpotifyConfig</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiate a Spotify API client.</span>
@@ -3473,7 +3473,7 @@ dictionary.</p>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span>
-<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_subreddit_posts</span><span class="p">(</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_subreddit_posts</span><span class="p">(</span>
     <span class="n">spotify</span><span class="p">:</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">,</span>
     <span class="n">reddit</span><span class="p">:</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">,</span>
     <span class="n">subreddit</span><span class="p">:</span> <span class="n">SubredditConfig</span><span class="p">,</span>
@@ -3766,7 +3766,7 @@ dictionary.</p>
 <span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
-<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">populate_playlist</span><span class="p">(</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">populate_playlist</span><span class="p">(</span>
     <span class="n">playlist_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">playlist_ids</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">spotify_username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -3881,7 +3881,7 @@ IDs.</p>
 <span class="normal">283</span>
 <span class="normal">284</span>
 <span class="normal">285</span>
-<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_playlist_ids</span><span class="p">(</span><span class="n">playlist_ids</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_playlist_ids</span><span class="p">(</span><span class="n">playlist_ids</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write playlist IDs to file.</span>
 
 <span class="sd">    Args:</span>

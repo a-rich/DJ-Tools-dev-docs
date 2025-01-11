@@ -1868,7 +1868,7 @@ of config.yaml</p>
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
-<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SyncConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SyncConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration object for the sync package.&quot;&quot;&quot;</span>
 
     <span class="n">artist_first</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1890,7 +1890,7 @@ of config.yaml</p>
     <span class="n">usb_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">user</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">        Raises:</span>
@@ -2095,7 +2095,7 @@ same time.</p>
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
-<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">    Raises:</span>
@@ -2295,7 +2295,7 @@ tracks are modified so that they point to user's "usb_path".</p>
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">download_collection</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">download_collection</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function downloads the collection of &quot;import_user&quot;.</span>
 
 <span class="sd">    After downloading &quot;import_user&quot;&#39;s collection, the location of all the</span>
@@ -2305,12 +2305,12 @@ tracks are modified so that they point to user's "usb_path".</p>
 <span class="sd">        config: Configuration object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">import_user</span><span class="si">}</span><span class="s2">&#39;s </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2"> collection...&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">import_user</span><span class="si">}</span><span class="s2">&#39;s </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> collection...&quot;</span>
     <span class="p">)</span>
     <span class="n">collection_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">collection_path</span><span class="o">.</span><span class="n">parent</span>
     <span class="n">src</span> <span class="o">=</span> <span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">bucket_url</span><span class="si">}</span><span class="s2">/dj/collections/</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">import_user</span><span class="si">}</span><span class="s2">/&quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2">_collection&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">_collection&quot;</span>
     <span class="p">)</span>
     <span class="n">dst</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">Path</span><span class="p">(</span><span class="n">collection_dir</span><span class="p">)</span>
@@ -2450,7 +2450,7 @@ with tracks in that playlist that match Beatcloud tracks.</p>
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">download_music</span><span class="p">(</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">download_music</span><span class="p">(</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">beatcloud_tracks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function syncs tracks from the Beatcloud to &quot;usb_path&quot;.</span>
@@ -2582,18 +2582,18 @@ with tracks in that playlist that match Beatcloud tracks.</p>
 <span class="normal">177</span>
 <span class="normal">178</span>
 <span class="normal">179</span>
-<span class="normal">180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">upload_collection</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">upload_collection</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function uploads &quot;collection_path&quot; to the cloud.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        config: Configuration object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Uploading </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">user</span><span class="si">}</span><span class="s2">&#39;s </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2"> collection...&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Uploading </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">user</span><span class="si">}</span><span class="s2">&#39;s </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> collection...&quot;</span>
     <span class="p">)</span>
     <span class="n">dst</span> <span class="o">=</span> <span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">bucket_url</span><span class="si">}</span><span class="s2">/dj/collections/</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">user</span><span class="si">}</span><span class="s2">/&quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2">_collection&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">_collection&quot;</span>
     <span class="p">)</span>
     <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;aws&quot;</span><span class="p">,</span>
@@ -2699,7 +2699,7 @@ they were uploaded (i.e. ID3 tags have been altered).</p>
 <span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
-<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">upload_music</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">upload_music</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function syncs tracks from &quot;usb_path&quot; to the Beatcloud.</span>
 
 <span class="sd">    &quot;aws_use_date_modified&quot; can be used in order to re-upload tracks that</span>
@@ -2950,7 +2950,7 @@ modifying import_user's collection to point to tracks located at "usb_path".</p>
 <span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_sync_command</span><span class="p">(</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_sync_command</span><span class="p">(</span>
     <span class="n">_cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span>
     <span class="n">upload</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -3106,7 +3106,7 @@ modifying import_user's collection to point to tracks located at "usb_path".</p>
 <span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
-<span class="k">def</span> <span class="nf">rewrite_track_paths</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">other_user_collection</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rewrite_track_paths</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">other_user_collection</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function modifies the location of tracks in a collection.</span>
 
 <span class="sd">    This is done by replacing the &quot;usb_path&quot; written by &quot;import_user&quot; with the</span>
@@ -3310,7 +3310,7 @@ modifying import_user's collection to point to tracks located at "usb_path".</p>
 <span class="normal">169</span>
 <span class="normal">170</span>
 <span class="normal">171</span>
-<span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run_sync</span><span class="p">(</span><span class="n">_cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run_sync</span><span class="p">(</span><span class="n">_cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs subprocess for &quot;aws s3 sync&quot; command. Output is collected and</span>
 <span class="sd">        formatted such that uploaded tracks are grouped by their directories.</span>
 
@@ -3352,7 +3352,7 @@ modifying import_user's collection to point to tracks located at "usb_path".</p>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Failure while syncing: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="n">new_music</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">group_id</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span>
@@ -3471,7 +3471,7 @@ modifying import_user's collection to point to tracks located at "usb_path".</p>
 <span class="normal">205</span>
 <span class="normal">206</span>
 <span class="normal">207</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
-<span class="k">def</span> <span class="nf">upload_log</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">log_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">upload_log</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">log_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function uploads &quot;log_file&quot; to the &quot;user&quot; logs folder in S3. It</span>
 <span class="sd">        then deletes all files created more than one day ago.</span>
 
@@ -3627,7 +3627,7 @@ larger, then multiple messages are sent.</p>
 <span class="normal">244</span>
 <span class="normal">245</span>
 <span class="normal">246</span>
-<span class="normal">247</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">webhook</span><span class="p">(</span>
+<span class="normal">247</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">webhook</span><span class="p">(</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content_size_limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Post track list of newly uploaded tracks to Discord channel associated</span>
