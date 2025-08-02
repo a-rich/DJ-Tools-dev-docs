@@ -1,6 +1,6 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: djtools
-Version: 2.9.0rc5
+Version: 2.9.0rc6
 Summary: DJ Tools is a library for managing a collection of music.
 Author-email: Alex Richards <alex.richards006@gmail.com>
 Project-URL: Repository, https://github.com/a-rich/DJ-tools
@@ -57,6 +57,7 @@ Requires-Dist: setuptools; extra == "dev"
 Requires-Dist: twine; extra == "dev"
 Provides-Extra: accelerated
 Requires-Dist: python-Levenshtein; extra == "accelerated"
+Dynamic: license-file
 
 # DJ Tools
 [![image](https://img.shields.io/pypi/v/djtools.svg)](https://pypi.org/project/djtools/)
