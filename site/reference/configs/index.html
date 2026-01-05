@@ -2148,7 +2148,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -2174,6 +2174,7 @@ correspond with the "configs" key of config.yaml.</p>
               Bases: <code><span title="djtools.configs.config_formatter.BaseConfigFormatter">BaseConfigFormatter</span></code></p>
 
 
+
         <p>Base configuration object used across the whole library.</p>
 
 
@@ -2183,7 +2184,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/config.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
 <span class="normal">47</span>
@@ -2217,7 +2218,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -2241,6 +2242,7 @@ correspond with the "configs" key of config.yaml.</p>
     <div class="doc doc-contents ">
 
 
+
         <p>Class necessary to support deserializing Enums.</p>
 
 
@@ -2250,7 +2252,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/config.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
 <span class="normal">57</span>
@@ -2264,7 +2266,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -2308,6 +2310,7 @@ correspond with the "configs" key of config.yaml.</p>
               Bases: <code><span title="enum.Enum">Enum</span></code></p>
 
 
+
         <p>Log level Enum.</p>
 
 
@@ -2317,7 +2320,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/config.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
@@ -2339,7 +2342,7 @@ correspond with the "configs" key of config.yaml.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -2386,7 +2389,7 @@ the CLI args.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -2412,6 +2415,7 @@ the CLI args.</p>
               Bases: <code><span title="argparse.Action">Action</span></code></p>
 
 
+
         <p>This Action implementation permits overriding list defaults.</p>
 <p>Some configuration options, like upload_exclude_dirs, may be set to some
 sensible default in config.yaml. Because of this users will be unable to
@@ -2426,7 +2430,7 @@ include/exclude options are mutually exclusive).</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/cli_args.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">505</span>
 <span class="normal">506</span>
@@ -2490,7 +2494,7 @@ include/exclude options are mutually exclusive).</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -2594,7 +2598,7 @@ include/exclude options are mutually exclusive).</p>
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/configs/cli_args.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">515</span>
 <span class="normal">516</span>
@@ -2685,7 +2689,7 @@ include/exclude options are mutually exclusive).</p>
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/configs/cli_args.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 13</span>
 <span class="normal"> 14</span>
@@ -3700,7 +3704,7 @@ overrides the corresponding configuration options with these arguments.</p>
 
 
 
-  <div class="doc doc-children">
+<div class="doc doc-children">
 
 
 
@@ -3726,6 +3730,7 @@ overrides the corresponding configuration options with these arguments.</p>
               Bases: <code><span title="Exception">Exception</span></code></p>
 
 
+
         <p>Exception for failing to load config.</p>
 
 
@@ -3735,7 +3740,7 @@ overrides the corresponding configuration options with these arguments.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
 <span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfigLoadFailure</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -3763,6 +3768,7 @@ overrides the corresponding configuration options with these arguments.</p>
               Bases: <code><span title="Exception">Exception</span></code></p>
 
 
+
         <p>Exception for invalid config.</p>
 
 
@@ -3772,7 +3778,7 @@ overrides the corresponding configuration options with these arguments.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
 <span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InvalidConfigYaml</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -3878,7 +3884,7 @@ provided, these override the configuration options set in config.yaml.</p>
     </table>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
 <span class="normal">33</span>
