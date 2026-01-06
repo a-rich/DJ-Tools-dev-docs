@@ -2080,11 +2080,11 @@
 </ul>
 <h2 id="dj-tools">DJ Tools</h2>
 <ol>
-<li>Run <code>uv pip install "djtools[accelerated]"</code> to install the DJ Tools library<ul>
-<li>To install DJ Tools without the accelerated computation for Levenshtein distance (might be difficult to install the binaries for non-technical users), run <code>uv pip install djtools</code></li>
-<li>You can install the pre-release version with <code>uv pip install djtools --pre</code></li>
-<li>If you want to restrict the version being installed to not include, say, the next minor version's beta release then you can do so like <code>uv pip install "djtools&lt;2.5.0" --pre</code></li>
-<li>Note that installing with the <code>--pre</code> flag will also install pre-release versions for all dependencies which may cause breakage, in that case you can target specific pre-release versions like this <code>uv pip install djtools==2.4.1-rc9</code></li>
+<li>Run <code>pip install "djtools[accelerated]"</code> to install the DJ Tools library<ul>
+<li>To install DJ Tools without the accelerated computation for Levenshtein distance (might be difficult to install the binaries for non-technical users), run <code>pip install djtools</code></li>
+<li>You can install the pre-release version with <code>pip install djtools --pre</code></li>
+<li>If you want to restrict the version being installed to not include, say, the next minor version's beta release then you can do so like <code>pip install djtools&lt;2.5.0 --pre</code></li>
+<li>Note that installing with the <code>--pre</code> flag will also install pre-release versions for all dependencies which may cause breakage, in that case you can target specific pre-release versions like this <code>pip install djtools==2.4.1-rc9</code></li>
 </ul>
 </li>
 <li>Confirm your installation works by running <code>djtools</code></li>
