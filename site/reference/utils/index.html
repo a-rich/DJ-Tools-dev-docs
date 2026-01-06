@@ -2481,11 +2481,7 @@ config.yaml</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/utils/config.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 85</span>
 <span class="normal"> 86</span>
 <span class="normal"> 87</span>
 <span class="normal"> 88</span>
@@ -2568,7 +2564,14 @@ config.yaml</p>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
-<span class="normal">168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">UtilsConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">UtilsConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration object for the utils package.&quot;&quot;&quot;</span>
 
     <span class="n">audio_bitrate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;320&quot;</span>
@@ -2577,8 +2580,8 @@ config.yaml</p>
     <span class="n">audio_headroom</span><span class="p">:</span> <span class="n">NonNegativeFloat</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">check_tracks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">check_tracks_fuzz_ratio</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="mi">80</span>
-    <span class="n">check_tracks_spotify_playlists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">local_dirs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">check_tracks_spotify_playlists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">local_dirs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
     <span class="n">normalize_audio</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">process_recording</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">recording_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2632,8 +2635,11 @@ config.yaml</p>
 <span class="sd">            String representing the bit rate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">36</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">320</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;audio_bitrate must be in the range [36, 320]&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">MIN_AUDIO_BITRATE</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">MAX_AUDIO_BITRATE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;audio_bitrate must be in the range &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">MIN_AUDIO_BITRATE</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">MAX_AUDIO_BITRATE</span><span class="si">}</span><span class="s2">]&quot;</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
@@ -2711,11 +2717,7 @@ config.yaml</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
@@ -2740,7 +2742,11 @@ config.yaml</p>
 <span class="normal">125</span>
 <span class="normal">126</span>
 <span class="normal">127</span>
-<span class="normal">128</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">    Raises:</span>
@@ -2873,11 +2879,7 @@ config.yaml</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
@@ -2891,7 +2893,14 @@ config.yaml</p>
 <span class="normal">145</span>
 <span class="normal">146</span>
 <span class="normal">147</span>
-<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;audio_bitrate&quot;</span><span class="p">)</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;audio_bitrate&quot;</span><span class="p">)</span>
 <span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">bitrate_validation</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validates audio_bitrate is in the range and casts it to a string.</span>
@@ -2906,8 +2915,11 @@ config.yaml</p>
 <span class="sd">        String representing the bit rate.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">36</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">320</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;audio_bitrate must be in the range [36, 320]&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">MIN_AUDIO_BITRATE</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">MAX_AUDIO_BITRATE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;audio_bitrate must be in the range &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">MIN_AUDIO_BITRATE</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">MAX_AUDIO_BITRATE</span><span class="si">}</span><span class="s2">]&quot;</span>
+        <span class="p">)</span>
 
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -2990,14 +3002,7 @@ config.yaml</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/config.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
 <span class="normal">160</span>
@@ -3008,7 +3013,14 @@ config.yaml</p>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
-<span class="normal">168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
 <span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">format_validation</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;UtilsConfig&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;UtilsConfig&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Logs a warning message to install FFmpeg if audio_format isn&#39;t wav.</span>
@@ -3171,7 +3183,8 @@ matching Beatcloud tracks.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/check_tracks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 24</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 23</span>
+<span class="normal"> 24</span>
 <span class="normal"> 25</span>
 <span class="normal"> 26</span>
 <span class="normal"> 27</span>
@@ -3267,8 +3280,7 @@ matching Beatcloud tracks.</p>
 <span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_tracks</span><span class="p">(</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_tracks</span><span class="p">(</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span>
     <span class="n">beatcloud_tracks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
@@ -3357,11 +3369,11 @@ matching Beatcloud tracks.</p>
             <span class="n">config</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">track_type</span><span class="si">}</span><span class="s2"> / Beatcloud Matches: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">loc</span><span class="p">,</span> <span class="n">matches</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span>
+        <span class="k">for</span> <span class="n">loc</span><span class="p">,</span> <span class="n">match_group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span>
             <span class="nb">sorted</span><span class="p">(</span><span class="n">matches</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">loc</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">beatcloud_track</span><span class="p">,</span> <span class="n">fuzz_ratio</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">beatcloud_track</span><span class="p">,</span> <span class="n">fuzz_ratio</span> <span class="ow">in</span> <span class="n">match_group</span><span class="p">:</span>
                 <span class="n">beatcloud_matches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path_lookup</span><span class="p">[</span><span class="n">beatcloud_track</span><span class="p">])</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="si">{</span><span class="n">fuzz_ratio</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">track</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">beatcloud_track</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -3480,7 +3492,8 @@ matching Beatcloud tracks.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/normalize_audio.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
@@ -3533,7 +3546,9 @@ matching Beatcloud tracks.</p>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
-<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets local tracks and normalizes them.</span>
 
 <span class="sd">    Tracks will be overwritten and have a headroom equal to audio_headroom.</span>
@@ -3563,7 +3578,10 @@ matching Beatcloud tracks.</p>
             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t decode </span><span class="si">{</span><span class="n">track</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">continue</span>
 
-        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">max_dBFS</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_headroom</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">abs</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">max_dBFS</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_headroom</span><span class="p">)</span>
+            <span class="o">&gt;</span> <span class="n">HEADROOM_TOLERANCE</span>
+        <span class="p">):</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">track</span><span class="si">}</span><span class="s2"> has a max dB of </span><span class="si">{</span><span class="n">audio</span><span class="o">.</span><span class="n">max_dBFS</span><span class="si">}</span><span class="s2">, normalizing to &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;have a headroom of </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_headroom</span><span class="si">}</span><span class="s2">...&quot;</span>
@@ -3710,7 +3728,8 @@ in spotify_playlists.yaml and have tracks in it.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/process_recording.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 34</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 33</span>
+<span class="normal"> 34</span>
 <span class="normal"> 35</span>
 <span class="normal"> 36</span>
 <span class="normal"> 37</span>
@@ -3896,6 +3915,7 @@ in spotify_playlists.yaml and have tracks in it.</p>
         <span class="n">audio_chunks</span><span class="p">,</span>
         <span class="n">track_data</span><span class="p">,</span>
         <span class="p">[</span><span class="n">write_path</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">audio_chunks</span><span class="p">),</span>
+        <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">exported_files</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -4025,7 +4045,8 @@ files by the youtube-dl package.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/url_download.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+<span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
@@ -4039,8 +4060,7 @@ files by the youtube-dl package.</p>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">fix_up</span><span class="p">(</span><span class="n">_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Removes digits appended to file name by youtube-dl.</span>
 
@@ -4109,7 +4129,8 @@ files by the youtube-dl package.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/url_download.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
@@ -4133,8 +4154,7 @@ files by the youtube-dl package.</p>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">url_download</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">url_download</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Downloads music files from a provided URL using the youtube-dl package.</span>
 
 <span class="sd">    Args:</span>
@@ -4324,9 +4344,7 @@ beatcloud "TRACK TITLE - ARTIST NAME", Levenshtein similarity.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
@@ -4347,7 +4365,9 @@ beatcloud "TRACK TITLE - ARTIST NAME", Levenshtein similarity.</p>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_distance</span><span class="p">(</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_distance</span><span class="p">(</span>
     <span class="n">spotify_playlist</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">spotify_track</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">beatcloud_track</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -4482,9 +4502,7 @@ Beatcloud track, and Levenshtein distance.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
 <span class="normal"> 70</span>
 <span class="normal"> 71</span>
 <span class="normal"> 72</span>
@@ -4532,7 +4550,10 @@ Beatcloud track, and Levenshtein distance.</p>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_matches</span><span class="p">(</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_matches</span><span class="p">(</span>
     <span class="n">compare_tracks</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
     <span class="n">beatcloud_tracks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span>
@@ -4556,13 +4577,14 @@ Beatcloud track, and Levenshtein distance.</p>
         <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">tracks</span>
     <span class="p">]</span>
     <span class="n">_product</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">playlist_tracks</span><span class="p">,</span> <span class="n">beatcloud_tracks</span><span class="p">))</span>
-    <span class="n">_temp</span><span class="p">,</span> <span class="n">beatcloud_tracks</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">_product</span><span class="p">)</span>
-    <span class="n">locations</span><span class="p">,</span> <span class="n">tracks</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">_temp</span><span class="p">)</span>
+    <span class="n">_temp</span><span class="p">,</span> <span class="n">beatcloud_tracks</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">_product</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">locations</span><span class="p">,</span> <span class="n">tracks</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">_temp</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
         <span class="n">locations</span><span class="p">,</span>
         <span class="n">tracks</span><span class="p">,</span>
         <span class="n">beatcloud_tracks</span><span class="p">,</span>
         <span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">check_tracks_fuzz_ratio</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">_product</span><span class="p">),</span>
+        <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span>
@@ -4659,10 +4681,7 @@ Beatcloud track, and Levenshtein distance.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
@@ -4674,7 +4693,10 @@ Beatcloud track, and Levenshtein distance.</p>
 <span class="normal">132</span>
 <span class="normal">133</span>
 <span class="normal">134</span>
-<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_beatcloud_tracks</span><span class="p">(</span><span class="n">bucket_url</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_beatcloud_tracks</span><span class="p">(</span><span class="n">bucket_url</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Lists all the music files in S3 and parses out the track titles and</span>
 <span class="sd">        artist names.</span>
 
@@ -4767,10 +4789,7 @@ Beatcloud track, and Levenshtein distance.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">141</span>
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
@@ -4791,7 +4810,10 @@ Beatcloud track, and Levenshtein distance.</p>
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
-<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_local_tracks</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_local_tracks</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Aggregates the files from one or more local directories in a dictionary</span>
 <span class="sd">        mapped with parent directories.</span>
 
@@ -4930,10 +4952,7 @@ Beatcloud track, and Levenshtein distance.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">168</span>
 <span class="normal">169</span>
 <span class="normal">170</span>
 <span class="normal">171</span>
@@ -4956,7 +4975,10 @@ Beatcloud track, and Levenshtein distance.</p>
 <span class="normal">188</span>
 <span class="normal">189</span>
 <span class="normal">190</span>
-<span class="normal">191</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_playlist_tracks</span><span class="p">(</span><span class="n">spotify</span><span class="p">,</span> <span class="n">playlist_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_playlist_tracks</span><span class="p">(</span><span class="n">spotify</span><span class="p">,</span> <span class="n">playlist_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Queries Spotify API for a playlist and pulls tracks from it.</span>
 
 <span class="sd">    Args:</span>
@@ -5076,10 +5098,7 @@ Beatcloud track, and Levenshtein distance.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span>
@@ -5114,7 +5133,10 @@ Beatcloud track, and Levenshtein distance.</p>
 <span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
-<span class="normal">232</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_spotify_tracks</span><span class="p">(</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_spotify_tracks</span><span class="p">(</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">playlists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Aggregates the tracks from one or more Spotify playlists into a</span>
@@ -5140,7 +5162,7 @@ Beatcloud track, and Levenshtein distance.</p>
         <span class="n">playlist_tracks</span><span class="p">[</span><span class="n">playlist</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_playlist_tracks</span><span class="p">(</span><span class="n">spotify</span><span class="p">,</span> <span class="n">playlist_id</span><span class="p">)</span>
         <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">playlist_tracks</span><span class="p">[</span><span class="n">playlist</span><span class="p">])</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;Got </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s1"> track</span><span class="si">{</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;s&quot;</span><span class="si">}</span><span class="s1"> from Spotify &#39;</span>
+            <span class="sa">f</span><span class="s2">&quot;Got </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2"> track</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="si">}</span><span class="s2"> from Spotify &quot;</span>
             <span class="sa">f</span><span class="s1">&#39;playlist &quot;</span><span class="si">{</span><span class="n">playlist</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
         <span class="p">)</span>
         <span class="n">_sum</span> <span class="o">+=</span> <span class="n">length</span>
@@ -5149,7 +5171,7 @@ Beatcloud track, and Levenshtein distance.</p>
             <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">playlist_tracks</span><span class="p">[</span><span class="n">playlist</span><span class="p">]:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="si">{</span><span class="n">track</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;Got </span><span class="si">{</span><span class="n">_sum</span><span class="si">}</span><span class="s1"> track</span><span class="si">{</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">_sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;s&quot;</span><span class="si">}</span><span class="s1"> from Spotify in total&#39;</span>
+        <span class="sa">f</span><span class="s2">&quot;Got </span><span class="si">{</span><span class="n">_sum</span><span class="si">}</span><span class="s2"> track</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">_sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="si">}</span><span class="s2"> from Spotify in total&quot;</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">playlist_tracks</span>
@@ -5198,10 +5220,7 @@ Beatcloud track, and Levenshtein distance.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">235</span>
-<span class="normal">236</span>
-<span class="normal">237</span>
-<span class="normal">238</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">238</span>
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span>
@@ -5242,7 +5261,10 @@ Beatcloud track, and Levenshtein distance.</p>
 <span class="normal">276</span>
 <span class="normal">277</span>
 <span class="normal">278</span>
-<span class="normal">279</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize_logger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize_logger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializes logger from configuration.</span>
 
 <span class="sd">    Returns:</span>
@@ -5251,7 +5273,7 @@ Beatcloud track, and Levenshtein distance.</p>
     <span class="n">log_file</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
         <span class="o">/</span> <span class="s2">&quot;logs&quot;</span>
-        <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.log&#39;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.log&quot;</span>
     <span class="p">)</span>
     <span class="n">logging_config</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -5398,10 +5420,7 @@ have Paths created from them.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">282</span>
-<span class="normal">283</span>
-<span class="normal">284</span>
-<span class="normal">285</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">285</span>
 <span class="normal">286</span>
 <span class="normal">287</span>
 <span class="normal">288</span>
@@ -5481,7 +5500,17 @@ have Paths created from them.</p>
 <span class="normal">362</span>
 <span class="normal">363</span>
 <span class="normal">364</span>
-<span class="normal">365</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_path</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_path</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator for converting Path-typed args to Paths.</span>
 
 <span class="sd">    Args:</span>
@@ -5525,8 +5554,12 @@ have Paths created from them.</p>
         <span class="n">kwarg_type_hints</span> <span class="o">=</span> <span class="n">type_hints</span><span class="p">[:</span><span class="n">num_kwargs</span><span class="p">]</span>
 
         <span class="c1"># Convert each arg to a Path if the annotation type is pathlib.Path.</span>
+        <span class="c1"># Use strict=False because we process only the args actually passed,</span>
+        <span class="c1"># which may be fewer than the function signature&#39;s parameters.</span>
         <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">arg_type</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">arg_type_hints</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">arg_type</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">arg_type_hints</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="p">):</span>
             <span class="c1"># Skip if the arg shouldn&#39;t be a path or it should be a Path but</span>
             <span class="c1"># already is.</span>
             <span class="k">if</span> <span class="n">arg_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path_types</span> <span class="ow">or</span> <span class="p">(</span>
@@ -5545,7 +5578,10 @@ have Paths created from them.</p>
         <span class="n">args</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
         <span class="c1"># Convert each kwarg to a Path if the annotation type is pathlib.Path.</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="n">arg_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">kwarg_type_hints</span><span class="p">):</span>
+        <span class="c1"># Use strict=False because we process only the kwargs actually passed.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="n">arg_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">kwarg_type_hints</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">):</span>
             <span class="c1"># Skip if the arg value shouldn&#39;t be a path or it should be a Path</span>
             <span class="c1"># but already is.</span>
             <span class="k">if</span> <span class="n">arg_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path_types</span> <span class="ow">or</span> <span class="p">(</span>
@@ -5689,17 +5725,7 @@ have Paths created from them.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">368</span>
-<span class="normal">369</span>
-<span class="normal">370</span>
-<span class="normal">371</span>
-<span class="normal">372</span>
-<span class="normal">373</span>
-<span class="normal">374</span>
-<span class="normal">375</span>
-<span class="normal">376</span>
-<span class="normal">377</span>
-<span class="normal">378</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">378</span>
 <span class="normal">379</span>
 <span class="normal">380</span>
 <span class="normal">381</span>
@@ -5735,7 +5761,17 @@ have Paths created from them.</p>
 <span class="normal">411</span>
 <span class="normal">412</span>
 <span class="normal">413</span>
-<span class="normal">414</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_parallel</span><span class="p">(</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_parallel</span><span class="p">(</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">,</span> <span class="n">audio</span><span class="p">:</span> <span class="n">AudioSegment</span><span class="p">,</span> <span class="n">track</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">write_path</span><span class="p">:</span> <span class="n">Path</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalize and export track with tags.</span>
@@ -5751,14 +5787,14 @@ have Paths created from them.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Normalize the audio such that the headroom is</span>
     <span class="c1"># audio_headroom dB.</span>
-    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">max_dBFS</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_headroom</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">max_dBFS</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_headroom</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">HEADROOM_TOLERANCE</span><span class="p">:</span>
         <span class="n">audio</span> <span class="o">=</span> <span class="n">effects</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">headroom</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_headroom</span><span class="p">)</span>
 
     <span class="c1"># Build the filename using the title, artist(s) and configured format.</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s2">&quot;artist&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">artist_first</span>
-        <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s2">&quot;artist&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">track</span><span class="p">[</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">write_path</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">audio_format</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
 
@@ -5858,23 +5894,23 @@ have Paths created from them.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">417</span>
-<span class="normal">418</span>
-<span class="normal">419</span>
-<span class="normal">420</span>
-<span class="normal">421</span>
-<span class="normal">422</span>
-<span class="normal">423</span>
-<span class="normal">424</span>
-<span class="normal">425</span>
-<span class="normal">426</span>
-<span class="normal">427</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">427</span>
 <span class="normal">428</span>
 <span class="normal">429</span>
 <span class="normal">430</span>
 <span class="normal">431</span>
 <span class="normal">432</span>
-<span class="normal">433</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reverse_title_and_artist</span><span class="p">(</span><span class="n">path_lookup</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reverse_title_and_artist</span><span class="p">(</span><span class="n">path_lookup</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reverses the title and artist parts of the filename.</span>
 
 <span class="sd">    Args:</span>
@@ -6048,17 +6084,7 @@ silence.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/utils/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">436</span>
-<span class="normal">437</span>
-<span class="normal">438</span>
-<span class="normal">439</span>
-<span class="normal">440</span>
-<span class="normal">441</span>
-<span class="normal">442</span>
-<span class="normal">443</span>
-<span class="normal">444</span>
-<span class="normal">445</span>
-<span class="normal">446</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">446</span>
 <span class="normal">447</span>
 <span class="normal">448</span>
 <span class="normal">449</span>
@@ -6131,7 +6157,17 @@ silence.</p>
 <span class="normal">516</span>
 <span class="normal">517</span>
 <span class="normal">518</span>
-<span class="normal">519</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">trim_initial_silence</span><span class="p">(</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">trim_initial_silence</span><span class="p">(</span>
     <span class="n">audio</span><span class="p">:</span> <span class="n">AudioSegment</span><span class="p">,</span>
     <span class="n">track_durations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
     <span class="n">trim_amount</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">TrimInitialSilenceMode</span><span class="p">],</span>
@@ -6207,7 +6243,7 @@ silence.</p>
         <span class="c1"># Sort scores in decreasing order.</span>
         <span class="n">scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># Get the offsets for the highest two scores.</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">offsets</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">offsets</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">step_size</span> <span class="o">//=</span> <span class="mi">2</span>
 
     <span class="c1"># Trim off the start of the recording using the best offset.</span>

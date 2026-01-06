@@ -1974,7 +1974,8 @@ If CLI arguments are provided, they override the corresponding configuration opt
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
@@ -2022,8 +2023,7 @@ If CLI arguments are provided, they override the corresponding configuration opt
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">build_config</span><span class="p">(</span>
     <span class="n">config_file</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;config.yaml&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseConfig</span><span class="p">:</span>
@@ -2054,7 +2054,7 @@ If CLI arguments are provided, they override the corresponding configuration opt
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Error reading config file </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">ConfigLoadFailure</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+        <span class="k">raise</span> <span class="n">ConfigLoadError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="n">entry_frame_filename</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">valid_filenames</span> <span class="o">=</span> <span class="p">(</span>
@@ -2095,9 +2095,10 @@ These are exported as a convenience for interactive collection manipulation in a
 <p>Note that, while <code>build_config</code> accepts an optional path to a <code>config.yaml</code>, features that interact with the other YAML configs (<code>collection_playlists.yaml</code> and <code>spotify_playlists.yaml</code>) still reference those config paths relative to the source.</p>
 <h2 id="ci">CI</h2>
 <p>There are several GitHub Actions bound to the lifecycle of <code>djtools</code>.</p>
-<p>The <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/pytest-coverage.yaml">pytest-coverage</a> and <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/pylint.yaml">pylint</a> workflows are triggered on pull request events.
-Passing both of these workflows is a check for merges into release branches or <code>main</code>.
-A pass rate of 100% is required.</p>
+<p>The <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/test-lint.yaml">test-lint</a> workflow is triggered on pull request events.
+It runs pytest for testing and ruff for linting and formatting checks.
+Passing this workflow is a check for merges into release branches or <code>main</code>.
+A test pass rate of 100% and zero lint errors are required.</p>
 <p>On pushes to <code>release/**</code> branches, changes to <code>pyproject.toml</code> or <code>.py</code> files trigger the <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/release-dev.yaml">release-dev</a> workflow which performs a pre-release version bump and wheel release.
 Changes to <code>.md</code> files trigger the <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/deploy-dev-docs.yaml">deploy-dev-docs</a> workflow which copies files to a shadow repository and deploys docs on that repo's GitHub Pages.</p>
 <p>On pushes to <code>main</code>, the <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/release-prod.yaml">release-prod</a> and <a href="https://github.com/a-rich/DJ-Tools/blob/main/.github/workflows/deploy-prod-docs.yaml">deploy-prod-docs</a> workflows are triggered which perform essentially the same steps as the equivalent dev workflows except the version is finalized instead of bumped and the docs are deployed on the main repository's GitHub Pages. </p>

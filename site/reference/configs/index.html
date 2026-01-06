@@ -1580,10 +1580,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#djtools.configs.helpers.ConfigLoadFailure" class="md-nav__link">
+  <a href="#djtools.configs.helpers.ConfigLoadError" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ConfigLoadFailure
+        ConfigLoadError
       
     </span>
   </a>
@@ -1591,10 +1591,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#djtools.configs.helpers.InvalidConfigYaml" class="md-nav__link">
+  <a href="#djtools.configs.helpers.InvalidConfigYamlError" class="md-nav__link">
     <span class="md-ellipsis">
       
-        InvalidConfigYaml
+        InvalidConfigYamlError
       
     </span>
   </a>
@@ -2072,10 +2072,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#djtools.configs.helpers.ConfigLoadFailure" class="md-nav__link">
+  <a href="#djtools.configs.helpers.ConfigLoadError" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ConfigLoadFailure
+        ConfigLoadError
       
     </span>
   </a>
@@ -2083,10 +2083,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#djtools.configs.helpers.InvalidConfigYaml" class="md-nav__link">
+  <a href="#djtools.configs.helpers.InvalidConfigYamlError" class="md-nav__link">
     <span class="md-ellipsis">
       
-        InvalidConfigYaml
+        InvalidConfigYamlError
       
     </span>
   </a>
@@ -2186,7 +2186,8 @@ correspond with the "configs" key of config.yaml.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/config.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+<span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
@@ -2198,8 +2199,7 @@ correspond with the "configs" key of config.yaml.</p>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseConfig</span><span class="p">(</span><span class="n">BaseConfigFormatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base configuration object used across the whole library.&quot;&quot;&quot;</span>
 
     <span class="n">collection</span><span class="p">:</span> <span class="n">CollectionConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">CollectionConfig</span><span class="p">)</span>
@@ -2254,10 +2254,10 @@ correspond with the "configs" key of config.yaml.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/config.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+<span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class necessary to support deserializing Enums.&quot;&quot;&quot;</span>
 
     <span class="n">extra</span> <span class="o">=</span> <span class="s2">&quot;allow&quot;</span>
@@ -2322,14 +2322,14 @@ correspond with the "configs" key of config.yaml.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/config.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+<span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LogLevel</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LogLevel</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Log level Enum.&quot;&quot;&quot;</span>
 
     <span class="n">DEBUG</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span>
@@ -3718,8 +3718,8 @@ overrides the corresponding configuration options with these arguments.</p>
 
 
 
-<h2 id="djtools.configs.helpers.ConfigLoadFailure" class="doc doc-heading">
-            <code>ConfigLoadFailure</code>
+<h2 id="djtools.configs.helpers.ConfigLoadError" class="doc doc-heading">
+            <code>ConfigLoadError</code>
 
 
 </h2>
@@ -3742,8 +3742,8 @@ overrides the corresponding configuration options with these arguments.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfigLoadFailure</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfigLoadError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception for failing to load config.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3756,8 +3756,8 @@ overrides the corresponding configuration options with these arguments.</p>
 
 
 
-<h2 id="djtools.configs.helpers.InvalidConfigYaml" class="doc doc-heading">
-            <code>InvalidConfigYaml</code>
+<h2 id="djtools.configs.helpers.InvalidConfigYamlError" class="doc doc-heading">
+            <code>InvalidConfigYamlError</code>
 
 
 </h2>
@@ -3780,8 +3780,8 @@ overrides the corresponding configuration options with these arguments.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InvalidConfigYaml</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InvalidConfigYamlError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception for invalid config.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3886,7 +3886,8 @@ provided, these override the configuration options set in config.yaml.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/djtools/configs/helpers.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
@@ -3934,8 +3935,7 @@ provided, these override the configuration options set in config.yaml.</p>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@make_path</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">build_config</span><span class="p">(</span>
     <span class="n">config_file</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;config.yaml&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseConfig</span><span class="p">:</span>
@@ -3966,7 +3966,7 @@ provided, these override the configuration options set in config.yaml.</p>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Error reading config file </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">ConfigLoadFailure</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+        <span class="k">raise</span> <span class="n">ConfigLoadError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="n">entry_frame_filename</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">valid_filenames</span> <span class="o">=</span> <span class="p">(</span>
